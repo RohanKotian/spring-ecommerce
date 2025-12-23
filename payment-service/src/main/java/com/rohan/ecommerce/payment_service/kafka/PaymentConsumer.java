@@ -1,7 +1,6 @@
 package com.rohan.ecommerce.payment_service.kafka;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class PaymentConsumer {
 
     @KafkaListener(topics = "order-topic", groupId = "payment-group")
-    public void consume(Order order) {
-        log.info("Processing payment for order {}", order.getId());
+    public void consume(String message) {
+        log.info("Processing payment for order {}", message);
     }
 }
