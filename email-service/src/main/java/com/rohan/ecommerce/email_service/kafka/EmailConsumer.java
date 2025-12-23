@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class EmailConsumer {
 
     @KafkaListener(topics = "order-topic", groupId = "email-group")
-    public void consume(Order order) {
-        log.info("Sending email for order: {}", order.getId());
+    public void consume(String message) {
+        log.info("Sending email for order: {}", message);
     }
 }
