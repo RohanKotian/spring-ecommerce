@@ -1,4 +1,4 @@
-package com.ecommerce.service_registry;
+package com.rohan.ecommerce.service_registry;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

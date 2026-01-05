@@ -20,7 +20,7 @@ public class OrderController {
     @PostMapping
     public Order save(@RequestBody Order order) {
         Order saved = repository.save(order);
-        producer.sendOrder(saved);
+//        producer.sendOrder(saved);
         return saved;
     }
 }
