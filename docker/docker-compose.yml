@@ -15,5 +15,52 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  service-registry:
+    build: ../service-registry
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: ../api-gateway
+    ports:
+      - "8085:8085"
+    depends_on:
+      - service-registry
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+  product-service:
+    build: ../product-service
+    depends_on:
+      - service-registry
+      - kafka
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+  order-service:
+    build: ../order-service
+    depends_on:
+      - service-registry
+      - kafka
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+  payment-service:
+    build: ../payment-service
+    depends_on:
+      - service-registry
+      - kafka
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+  email-service:
+    build: ../email-service
+    depends_on:
+      - service-registry
+      - kafka
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
