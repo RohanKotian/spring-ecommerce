@@ -1,0 +1,23 @@
+package com.rohan.ecommerce.identity_service.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class AuthResponse {
+
+    private String token;
+
+    private String tokenType;
+
+    private String username;
+    private String email;
+    private String role;
+
+    private long expiresIn;
+}
