@@ -64,4 +64,4 @@ jwt:
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
-    com.example.api_gateway: DEBUG
+    com.rohan.ecommerce.api_gateway: DEBUG
