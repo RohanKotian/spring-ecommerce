@@ -17,5 +17,4 @@ COPY --from=build /app/target/*.jar identity-service.jar
 
 EXPOSE 8085
 
-ENTRYPOINT ["java", "-jar", "identity-service.jar", \
-            "--spring.profiles.active=docker"]
+ENTRYPOINT ["java", "-jar", "identity-service.jar", "--spring.profiles.active=docker"]
