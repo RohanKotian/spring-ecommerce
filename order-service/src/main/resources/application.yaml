@@ -14,6 +14,36 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
 
+  feign:
+    circuitbreaker:
+
+      enabled: true
+
+    client:
+      config:
+        product-service:
+
+          connectTimeout: 5000
+
+          readTimeout: 5000
+
+          loggerLevel: basic
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      product-service:
+
+        slidingWindowSize: 10
+
+        failureRateThreshold: 50
+
+        waitDurationInOpenState: 10000
+
+        permittedNumberOfCallsInHalfOpenState: 3
+
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
 eureka:
   client:
     service-url:
